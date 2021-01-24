@@ -8,7 +8,7 @@ const blogRouter = require('./routers/blog');
 const userRouter = require('./routers/user');
 
 app.use(express.json());
-
+app.use("images",express.static("static/images"))
 app.use('/user',userRouter)
 app.use('/blog',blogRouter)
 
