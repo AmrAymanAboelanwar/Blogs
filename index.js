@@ -1,8 +1,8 @@
 const express = require('express');
 const app =express();
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost:27017/Blog',{useNewUrlParser: true, useUnifiedTopology: true});
+const { MONGODB_URI } = process.env;
+mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true});
 const blogRouter = require('./routers/blog');
 const userRouter = require('./routers/user');
 
