@@ -38,7 +38,7 @@ router.post('/add',authMiddleware,upload.single("demo_image"),async (req,res,nex
        
      // check or not  img is uploaded correctly
      try{
-         myimg=req.file.path;
+         myimg=req.file.filename;
          myObj={...newBlog,img:myimg,userId :id}    // obj contain img to be upload
      }catch(e){
          myObj={...newBlog,userId :id}              // obj not contain img to uploaded
