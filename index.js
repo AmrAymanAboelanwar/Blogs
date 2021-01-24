@@ -2,7 +2,8 @@ const express = require('express');
 const app =express();
 const mongoose = require('mongoose');
 const { MONGODB_URI } = process.env;
-mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log('Database Connected Successfully')).catch((err) =>console.log(err));
+
 const blogRouter = require('./routers/blog');
 const userRouter = require('./routers/user');
 
@@ -20,7 +21,7 @@ app.use((err, req, res, next) => {
 app.use((req, res, next) => {
     res.status(404).json({ err: 'page not found' });
  });
-
-app.listen(9000,()=>{
-    console.log('App is ready on: ' , 9000);
+const{PORT=9000}=process.env;
+app.listen(PORT,()=>{
+    console.log('App is ready on: ' , PORT);
 })
