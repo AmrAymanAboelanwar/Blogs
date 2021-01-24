@@ -8,10 +8,7 @@ const path = require('path');
 
 
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-      cb(null, 'images');
-  },
-
+  destination: path.join(__dirname,"..","static","images"),
   // By default, multer removes file extensions so let's add them back
   filename: function(req, file, cb) {
       cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname));
@@ -38,10 +35,10 @@ router.get('/getAll',async(req , res ,next)=>{
 router.post('/add',authMiddleware,upload.single("demo_image"),async (req,res,next)=> {
      newBlog=req.body;
      id= req.user.id;
-
+       
      // check or not  img is uploaded correctly
      try{
-         myimg=req.file.filename;
+         myimg=req.file.path;
          myObj={...newBlog,img:myimg,userId :id}    // obj contain img to be upload
      }catch(e){
          myObj={...newBlog,userId :id}              // obj not contain img to uploaded
