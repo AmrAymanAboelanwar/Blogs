@@ -2,7 +2,7 @@ const express = require('express');
 const app =express();
 const mongoose = require('mongoose');
 const { MONGODB_URI } = process.env;
-mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log('Database Connected Successfully')).catch((err) =>console.log(err));
+mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true});
 
 const blogRouter = require('./routers/blog');
 const userRouter = require('./routers/user');
